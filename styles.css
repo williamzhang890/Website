@@ -1,0 +1,136 @@
+div.page, div.page *, div.navigator, div.navigator * {
+    font-family: "Courier New", monospace;
+    color: black;
+    vertical-align: text-top;
+}
+
+div.navigator {
+    background-color: gainsboro;
+    padding: 50px;
+}
+
+
+#form label, .spaced {
+    margin: 10px;
+}
+
+#resume {
+    margin: 1in;
+    margin-top: 0in;
+    margin-bottom: 0in;
+    min-width: 10.5in;
+    max-width: 10.5in;
+}
+
+#resume * {
+    font-family: "Arial", sans-serif;
+    color: black;
+    background-color: white;
+    font-size: 11pt;
+}
+
+#resume h1 {
+    font-size: 16pt;
+}
+
+#resume h2 {
+    font-size: 13pt;
+}
+
+div.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    
+}
+
+div.center {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.page {
+    text-align: left;
+    font-size: 12pt;
+    align-content: left;
+}
+
+div.page, div.navigator {
+    max-width: 900px;
+    min-width: 800px;
+}
+
+.title, div.navigator {
+    text-align: center;
+}
+
+div.navigator {
+    width: 100%;
+}
+
+div.navigator td {
+    width: 25%;   
+}
+
+div.navigator a:hover {
+    color:dimgray;
+}
+
+table {
+    width: 100%;
+}
+
+td.timespan {
+    width: 2in;
+}
+
+td.entry {
+    max-width: 4.5in;
+}
+
+#resume h2 {
+    break-after: avoid;
+}
+
+#resume tr {
+    break-inside: avoid;
+}
+
+#resume a, #resume abbr, .navigator a, .navigator abbr {
+    text-decoration: none;
+}
+
+#resume a:hover {
+    color: deeppink;
+}
+#resume abbr:hover {
+    color: deeppink;
+}
+
+@page {
+    size: auto;
+    margin: 1in;
+}
+
+@page :first {
+    margin-top: .5in;
+}
+
+@media print {
+    * {
+        visibility: hidden;
+    }
+
+    #printable * {
+        visibility: visible;
+    }
+
+    #printable {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

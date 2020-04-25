@@ -8,23 +8,25 @@
         <header>
             <div class = "center">
                 <div class = "navigator">
-                    <h1>Hi. I'm William Zhang.</h1>
-                    <table>
-                        <tr>
-                            <td>
+                    <div class = "center">
+                        <div class="row">
+                            <h1>Hi. I'm William Zhang.</h1>
+                        </div>
+                        <div class="row">
+                            <div>
                                 <a href="index.html">Home</a>
-                            </td> 
-                            <td>
+                            </div>
+                            <div>
                                 <a href="projects.html">Projects</a>
-                            </td>
-                            <td>
+                            </div>
+                            <div>
                                 <a href = "resume.html">Resume</a>
-                            </td>
-                            <td>
+                            </div>
+                            <div>
                                 <a href= "contact.html">Contact Me</a>
-                            </td>
-                        </tr>
-                    </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
@@ -36,57 +38,71 @@
                 <h1>Contact Me</h1>
                 <div class = "center">
                     <div class = "row">
-                        <p class = "spaced">
-                            Email: <a href = "mailto:wtzhang23@gmail.com">wtzhang23@gmail.com</a>
-                        </p>
-                        <p class = "spaced">
-                            Facebook: <a href = "https://www.facebook.com/william.zhang.165470">William Zhang</a>
-                        </p>
-                        <p class = "spaced">
-                            Discord: AsianMercenary#2668
-                        </p>
+                        <div>
+                            <div class = "row">
+                                <div>
+                                    <p>
+                                        Email: <a href = "mailto:wtzhang23@gmail.com">wtzhang23@gmail.com</a>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class>
+                                        Facebook: <a href = "https://www.facebook.com/william.zhang.165470">William Zhang</a>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class>
+                                        Discord: AsianMercenary#2668
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class>
+                                        Anilist: <a href = "https://anilist.co/user/AsianMercenary/">AsianMercenary</a>
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class>
+                                        Github: <a href = "https://github.com/wtzhang23">wtzhang23</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class = "row">
-                        <p class = "spaced">
-                            Anilist: <a href = "https://anilist.co/user/AsianMercenary/">AsianMercenary</a>
-                        </p>
-                        <p class = "spaced">
-                            Github: <a href = "https://github.com/wtzhang23">wtzhang23</a>
-                        </p>
-                    </div>
-                </div>
-                <div class = "center">
-                    <form id = "form" action = "contact.php" method = "post">
-                        <div class = "center">
+                    <div class="row">
+                        <form id = "form" action = "contact.cgi" method = "post">
                             <fieldset>
                                 <legend>Your Contact Information</legend>
                                 <div class = "row">
-                                    <label for = "firstName">First Name:
-                                        <input type = "text" name = "firstName" required = "required" size = 20/>
-                                    </label>
+                                    <div>
+                                        <label for = "firstName">First Name:
+                                            <input type = "text" name = "firstName" required = "required" size = 20/>
+                                        </label>
+                                    </div>
 
-                                    <label for = "lastName">Last Name:
-                                        <input type = "text" name = "firstName" required = "required" size = 20/>
-                                    </label>
+                                    <div>
+                                        <label for = "lastName">Last Name:
+                                            <input type = "text" name = "lastName" required = "required" size = 20/>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class = "center">
+                                <div class = "row">
                                     <label for = "email">Email Address:
                                         <input type = "email" name = "email" size = 55/>
                                     </label>
                                 </div>
                             </fieldset>
 
-                            <div class = "center">
+                            <div class = "row">
                                 <label for = "msg">Message: <br>
-                                    <textarea name = "msg" cols = 80 rows = 10 required = "required"></textarea>
+                                    <textarea name = "msg" required = "required" style = "width:100%;"></textarea>
                                 </label>
                             </div>
 
-                            <button>
-                                Message
-                            </button>
-                        </div>
-                    </form>
+                            <div class="row">
+                                <input type="submit" value="Submit">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

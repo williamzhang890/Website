@@ -1,25 +1,29 @@
-div.page, div.page *, div.navigator, div.navigator * {
+
+.page, .page *, .navigator, .navigator * {
     font-family: "Courier New", monospace;
     color: black;
     vertical-align: text-top;
+    flex-grow: 1;
 }
 
-div.navigator {
+.navigator {
+    display: flex;
     background-color: gainsboro;
     padding: 50px;
+    flex: 1;
 }
 
-
-#form label, .spaced {
+label {
+    width: 100px;
     margin: 10px;
 }
 
 #resume {
-    margin: 1in;
+    margin: 5vw;
     margin-top: 0in;
     margin-bottom: 0in;
-    min-width: 10.5in;
-    max-width: 10.5in;
+    min-width: 70vw;
+    max-width: 70vw;
 }
 
 #resume * {
@@ -37,45 +41,64 @@ div.navigator {
     font-size: 13pt;
 }
 
-div.row {
+.row {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    
-}
-
-div.center {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-div.page {
-    text-align: left;
-    font-size: 12pt;
-    align-content: left;
-}
-
-div.page, div.navigator {
-    max-width: 900px;
-    min-width: 800px;
-}
-
-.title, div.navigator {
-    text-align: center;
-}
-
-div.navigator {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-grow: 1;
     width: 100%;
 }
 
-div.navigator td {
+.row * {
+    flex-grow: 1;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+input, textarea, select {
+    order: 2;
+    flex: 1 1 auto;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.page {
+    text-align: left;
+    font-size: 1vw;
+    align-content: left;
+}
+
+.page, .navigator {
+    max-width: 80vw;
+    min-width: 80vw;
+}
+
+.title, .navigator {
+    text-align: center;
+}
+
+.navigator {
+    width: 100%;
+}
+
+.navigator td {
     width: 25%;   
 }
 
-div.navigator a:hover {
+.navigator a:hover {
     color:dimgray;
 }
 
@@ -91,6 +114,11 @@ td.entry {
     max-width: 4.5in;
 }
 
+/* for images*/
+figure{display:table}
+figcaption{display:table-caption;caption-side:bottom}
+
+/* for resume */
 #resume h2 {
     break-after: avoid;
 }

@@ -1,14 +1,17 @@
 #!/usr/bin/python3
 import cgi
 import cgitb; cgitb.enable()
-from smtplib import SMTP
-from getpass import getpass
+import os
+from validate_email import validate_email
 
 print ("Content-Type: text/html\n\n")
 page = '''
 <html>
     <head>
-        <title>Contact Me</title>
+        <title>Leaderboard</title>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
         <meta name = "description" content = "Leaderboard"/>
         <meta http-equiv = "author" content = "William Zhang"/>
         <link href = "styles.css" type = "text/css" rel = "stylesheet"/>
@@ -42,78 +45,78 @@ page = '''
     <body>
         <div class="center">
             <div class="page">
+                <h1>
+                    Leaderboard.
+                </h1>
                 <div class="row">
-                    <form id="form" action="leaderboard.cgi" method="post">
-                        <fieldset>
-                            <legend>Upload your results</legend>
-                            <div class="row">
-                                <div class="column">
-                                    <div>
-                                        <label for="username" size = 80>User Name:</label>
+                    <div class = "column">
+                        <form id="form" action="leaderboard.cgi" method="post">
+                            <fieldset>
+                                <legend>Upload your results</legend>
+                                <div class="row">
+                                    {}
+                                </div>
+                                <div class="row">
+                                    <div class="column">
+                                        <div>
+                                            <label for="username" size=80>UTCS id:</label>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label for="password" size = 80>Password:</label>
+                                    <div class="column">
+                                        <div>
+                                            <input type="text" id="username" name="username" required="required" style="width:100%;"/>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="column">
+                                <div class="row">
                                     <div>
-                                        <input type="text" id="username" name="username" required="required" size=20/>
-                                    </div>
-                                    <div>
-                                        <input type="password" id="password" name="password" required="required" size=20/>
+                                        <input type="file" name="fileToUpload" id="fileToUpload">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                <div class="row">
+                                        <input type="submit" value="Submit" style="flex-grow:0;">
                                 </div>
-                            </div>
-                            <div class="row">
-                                    <input type="submit" value="Submit">
-                            </div>
-                        </fieldset>
-                    </form>
+                                <input type="hidden" id="submitted" name='submitted' value='1'>     
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="column" style="flex-grow:3;">
+                    </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
 '''
-print(page)
 
-'''
 # code copied from http://homepages.math.uic.edu/~jan/mcs275/mcs275notes/lec35.html
-connected = False
-try:
-    s = SMTP('mail2.cs.utexas.edu', 587)
-    s.starttls()
-    connected = True
-except:
-    print('Failed to connect to server.')
+form = cgi.FieldStorage()
+submitted, username, f = form.getvalue('submitted'), form.getvalue('username'), form.getvalue('file')
+email = username + "@cs.utexas.edu"
+form_msg = ''
 
-if connected:
-    #user = input("UTCS username: ")
-    #password = getpass("UTCS password: ")
-    form = cgi.FieldStorage(environ="post")
-    user, password = input(), getpass()
-    success = False
-    for _ in range(3): # three attempts to log in
-        try:
-            result = s.login('{}@cs.utexas.edu'.format(user),password)
-            success = True
-            break
-        except:
-            pass
+if submitted == '1':
+    if validate_email (email):  
+        if not os.path.isdir(username):
+            os.mkdir(username)
+        saved_filepath = os.path.join("leaderboard", username, "submission")
+        template = os.path.join("leaderboard", "confirmation_email")
+        new_confirmation_addr = os.path.join("leaderboard", username, "email")
+        id_addr = os.path.join("leaderboard", username, "id")
+        i = os.urandom(32)
+        with open(saved_filepath, 'a') as w:
+            w.write(f)
+        
+        with open(template, 'r') as r:
+            s = r.readlines()
+            with open(new_confirmation_addr, 'a') as w:
+                w.write(s.format(i))
+            with open(id_addr, 'a') as w:
+                w.write(id_addr)
+            
 
-        try:
-            result = s.login(user, password)
-            success = True
-            break
-        except:
-            pass
-    if success:
-        pass
+        os.system('mail {} < {}'.format(username + '@cs.utexas.edu', new_confirmation_addr))
+
     else:
-        print('Failed to login.')
-'''
+        form_msg = 'Invalid Email.'
+print(page.format(form_msg))

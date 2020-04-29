@@ -10,7 +10,7 @@
     display: flex;
     background-color: gainsboro;
     padding: 50px;
-    flex: 1;
+    flex-grow: 1;
 }
 
 label {
